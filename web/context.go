@@ -19,16 +19,19 @@ type Context struct {
 	// response info
 	StatusCode int
 	// middleWare
-	handlers 		[]HandleFunc
-	handlerIndex 	int
+	handlers     []HandleFunc
+	handlerIndex int
+	// engine
+	engine *Engine
 }
 
-func NewContext(w http.ResponseWriter, req *http.Request) *Context {
+func NewContext(w http.ResponseWriter, req *http.Request, engine *Engine) *Context {
 	return &Context{
-		Writer: w,
-		Req:    req,
-		Path:   req.URL.Path,
-		Method: req.Method,
+		Writer:       w,
+		Req:          req,
+		Path:         req.URL.Path,
+		engine:       engine,
+		Method:       req.Method,
 		handlerIndex: -1,
 	}
 }
@@ -93,17 +96,25 @@ func (c *Context) Data(code int, data []byte) {
 	c.Writer.Write(data)
 }
 
-func (c *Context) HTML(code int, html string) {
+func (c *Context) HTML(code int, name string, data interface{}) {
 	c.SetHeader("Content-Type", "text/html")
 	c.Status(code)
-	c.Writer.Write([]byte(html))
+	if err := c.engine.htmlTemplates.ExecuteTemplate(c.Writer, name, data); err != nil {
+		c.Fail(500, err.Error())
+	}
 }
 
 func (c *Context) Next() {
 	c.handlerIndex++
-	// can't make sure middlerWares will call Context.Next(), Using c.handlers[c.handlerIndex] is not right
+	// can't make sure middleWares will call Context.Next(), Using c.handlers[c.handlerIndex] is not right
 	s := len(c.handlers)
 	for ; c.handlerIndex < s; c.handlerIndex++ {
 		c.handlers[c.handlerIndex](c)
 	}
+}
+
+func (c *Context) Fail(code int, err string) {
+	// skip middlewares and return immediately
+	c.handlerIndex = len(c.handlers)
+	c.JSON(code, H{"message": err})
 }

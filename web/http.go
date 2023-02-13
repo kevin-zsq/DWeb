@@ -1,6 +1,7 @@
 package web
 
 import (
+	"html/template"
 	"net/http"
 	"path"
 	"strings"
@@ -10,8 +11,10 @@ type HandleFunc func(*Context)
 
 type Engine struct {
 	*RouterGroup
-	router *router
-	groups []*RouterGroup
+	router        *router
+	groups        []*RouterGroup
+	htmlTemplates *template.Template
+	funcMap       template.FuncMap
 }
 
 func NewEngine() *Engine {
@@ -33,9 +36,19 @@ func (e *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			middleWares = append(middleWares, m.middleWares...)
 		}
 	}
-	c := NewContext(w, req)
+	c := NewContext(w, req, e)
 	c.handlers = middleWares
 	e.router.Handle(c)
+}
+
+func (e *Engine) SetFuncMap(funcMap template.FuncMap) {
+	e.funcMap = funcMap
+}
+
+// LoadHTMLGlob loads all template html file into cache
+// ParseGlob open all files match the pattern and store all files content
+func (e *Engine) LoadHTMLGlob(pattern string) {
+	e.htmlTemplates = template.Must(template.New("").Funcs(e.funcMap).ParseGlob(pattern))
 }
 
 type RouterGroup struct {
@@ -72,6 +85,7 @@ func (r *RouterGroup) POST(url string, handler HandleFunc) {
 	r.addRouter("POST", url, handler)
 }
 
+// Static register router to server static file server
 func (r *RouterGroup) Static(relativePath string, root string) {
 	handler := r.createStaticHandler(relativePath, http.Dir(root))
 	urlPattern := path.Join(relativePath, "/*path")

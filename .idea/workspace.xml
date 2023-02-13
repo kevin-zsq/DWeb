@@ -5,21 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf05142a-d03a-4245-a402-86770e3660da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/DWeb.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/context.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/http.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/tries.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/file.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/arr.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/css.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/custom_func.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/logger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DWeb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/context.go" beforeDir="false" afterPath="$PROJECT_DIR$/web/context.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/web/http.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -47,6 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -63,6 +73,11 @@
     "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../7days-golang/.idea/7days-golang.iml" filepath="$PROJECT_DIR$/../7days-golang/.idea/7days-golang.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/DWeb.iml" filepath="$PROJECT_DIR$/.idea/DWeb.iml" />
     </modules>
   </component>
