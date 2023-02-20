@@ -32,6 +32,7 @@ func FormatAsDate(t time.Time) string {
 
 func main() {
 	engine := controller.NewEngine()
+	engine.Use(controller.Recovery())
 	engine.Use(controller.Logger())
 	// html render
 	engine.SetFuncMap(template.FuncMap{
@@ -45,6 +46,13 @@ func main() {
 	engine.GET("/hello/:name", func(c *controller.Context) {
 		// expect /hello/kevin
 		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
+	})
+
+	//test internal error
+	engine.GET("/panic", func(c *controller.Context) {
+		// expect /hello/kevin
+		names := []string{"kevin"}
+		c.String(http.StatusOK, "hello %s\n", names[100])
 	})
 
 	engine.POST("/login", func(c *controller.Context) {
